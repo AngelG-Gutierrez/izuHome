@@ -1,4 +1,4 @@
-// src/components/PropertyCard.jsx - VERSIÓN CON NOMBRES COMPLETOS
+// src/components/PropertyCard.jsx - VERSIÓN CORREGIDA COMPLETA
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaBed, FaBath, FaRulerCombined, FaStar, FaHeart } from 'react-icons/fa';
@@ -33,6 +33,17 @@ const PropertyCard = ({ property, onToggleFavorite }) => {
     }
   };
 
+  // Función para crear URL segura para fallback de imagen
+  const createFallbackImageUrl = (title) => {
+    return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23FCF6D9'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='20' fill='%235C3E94' text-anchor='middle'%3EIzuHome%3C/text%3E%3Ctext x='200' y='180' font-family='Arial' font-size='14' fill='%235C3E94' text-anchor='middle'%3E${encodeURIComponent(title.substring(0, 30))}%3C/text%3E%3C/svg%3E`;
+  };
+
+  // Manejar error en imagen
+  const handleImageError = (e) => {
+    e.target.onerror = null;
+    e.target.src = createFallbackImageUrl(property.title);
+  };
+
   return (
     <div className="property-card" style={{ borderColor: getPropertyTypeColor(property.type) }}>
       <div className="property-image-container">
@@ -40,10 +51,8 @@ const PropertyCard = ({ property, onToggleFavorite }) => {
           src={property.image} 
           alt={property.title} 
           className="property-image"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23FCF6D9'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='24' fill='%235C3E94' text-anchor='middle'%3EIzuHome%3C/text%3E%3Ctext x='200' y='180' font-family='Arial' font-size='16' fill='%235C3E94' text-anchor='middle'%3E${encodeURIComponent(property.title)}%3C/text%3E%3C/svg%3E`;
-          }}
+          onError={handleImageError}
+          loading="lazy"
         />
         
         <div className="property-overlay">
@@ -145,9 +154,9 @@ const PropertyCard = ({ property, onToggleFavorite }) => {
         </div>
         
         <div className="property-actions">
+          {/* CAMBIADO: Quitado el state que causa problemas */}
           <Link 
             to={`/propiedad/${property.id}`}
-            state={{ property }} // Pasa la propiedad completa al detalle
             className="view-details-btn"
             title="Ver todos los detalles de esta propiedad"
           >
@@ -157,6 +166,7 @@ const PropertyCard = ({ property, onToggleFavorite }) => {
           <button 
             className="contact-owner-btn"
             title="Contactar al propietario de esta propiedad"
+            onClick={() => alert(`Contactando al propietario de: ${property.title}`)}
           >
             Contactar
           </button>
