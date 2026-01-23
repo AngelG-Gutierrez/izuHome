@@ -4,115 +4,95 @@ import { Link, useNavigate } from 'react-router-dom';
 function Register() {
   const navigate = useNavigate();
   
-  // Estado para los datos del formulario
   const [formData, setFormData] = useState({
-    fullName: '',
+    nombre: '',
+    apellidos: '',
     email: '',
+    telefono: '', // Requerido según RF-001
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    tipo: 'inquilino' // Valor por defecto según Schema DB
   });
 
-  // Estado para manejar errores de validación local
-  const [error, setError] = useState('');
-
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-    // Limpiamos el error si el usuario empieza a escribir de nuevo
-    if (error) setError('');
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // 1. Validación: Contraseñas coinciden
     if (formData.password !== formData.confirmPassword) {
-      setError('Las contraseñas no coinciden.');
+      alert("Las contraseñas no coinciden");
       return;
     }
-
-    // 2. Validación: Longitud mínima (opcional pero recomendada)
-    if (formData.password.length < 6) {
-      setError('La contraseña debe tener al menos 6 caracteres.');
-      return;
-    }
-
-    // 3. Simulación de envío al Backend
-    console.log('Enviando datos de registro:', {
-      fullName: formData.fullName,
-      email: formData.email,
-      password: formData.password
-      // Nota: No enviamos 'confirmPassword' al backend, no es necesario allá
-    });
-
-    // Redirigir al Login para que el usuario inicie sesión con su nueva cuenta
-    // O redirigir directo al dashboard si el backend devuelve el token inmediatamente
+    // Aquí iría la conexión con tu API (Node.js)
+    // endpoint: POST /api/usuarios
+    console.log('Registrando usuario IzuHome:', formData);
     navigate('/login');
   };
 
   return (
     <div className="auth-container">
-      <h2>Crear Cuenta</h2>
-      
-      {/* Mensaje de error visual */}
-      {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
+      <h2 style={{ marginBottom: '0.5rem' }}>Únete a IzuHome</h2>
+      <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1.5rem' }}>
+        La comunidad inmobiliaria de Izúcar
+      </p>
 
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre Completo</label>
-          <input 
-            type="text" 
-            name="fullName" 
-            value={formData.fullName} 
-            onChange={handleChange} 
-            placeholder="Ej. Juan Pérez"
-            required 
-          />
+        {/* Nombre y Apellidos */}
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <div style={{ flex: 1 }}>
+            <label>Nombre</label>
+            <input type="text" name="nombre" required onChange={handleChange} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <label>Apellidos</label>
+            <input type="text" name="apellidos" required onChange={handleChange} />
+          </div>
         </div>
 
+        {/* Selección de Rol - CRÍTICO para el proyecto */}
+        <div>
+          <label>¿Cómo usarás la plataforma?</label>
+          <select 
+            name="tipo" 
+            value={formData.tipo} 
+            onChange={handleChange}
+            style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #cbd5e1' }}
+          >
+            <option value="inquilino">Busco un lugar para vivir (Inquilino)</option>
+            <option value="arrendador">Quiero rentar mi propiedad (Arrendador)</option>
+            <option value="ambos">Ambos</option>
+          </select>
+        </div>
+
+        {/* Contacto */}
         <div>
           <label>Correo Electrónico</label>
-          <input 
-            type="email" 
-            name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            placeholder="correo@ejemplo.com"
-            required 
-          />
+          <input type="email" name="email" placeholder="ejemplo@utizucar.edu.mx" required onChange={handleChange} />
+        </div>
+        
+        <div>
+          <label>Teléfono (WhatsApp)</label>
+          <input type="tel" name="telefono" placeholder="243 000 0000" required onChange={handleChange} />
         </div>
 
+        {/* Seguridad */}
         <div>
           <label>Contraseña</label>
-          <input 
-            type="password" 
-            name="password" 
-            value={formData.password} 
-            onChange={handleChange} 
-            required 
-          />
+          <input type="password" name="password" required onChange={handleChange} />
         </div>
-
         <div>
           <label>Confirmar Contraseña</label>
-          <input 
-            type="password" 
-            name="confirmPassword" 
-            value={formData.confirmPassword} 
-            onChange={handleChange} 
-            required 
-          />
+          <input type="password" name="confirmPassword" required onChange={handleChange} />
         </div>
 
-        <button type="submit" style={{ marginTop: '10px' }}>
-          Registrarse
+        <button type="submit" className="btn-primary" style={{ marginTop: '1rem' }}>
+          Crear Cuenta
         </button>
       </form>
 
-      <p style={{ marginTop: '1rem' }}>
-        ¿Ya tienes cuenta? <Link to="/login">Inicia Sesión</Link>
+      <p style={{ marginTop: '1.5rem', fontSize: '0.9rem' }}>
+        ¿Ya tienes cuenta? <Link to="/login" style={{ fontWeight: 'bold' }}>Inicia Sesión</Link>
       </p>
     </div>
   );

@@ -1,39 +1,38 @@
-// src/pages/auth/Login.jsx
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // AQUÍ CONECTARÍAS CON TU BACKEND (API)
-    console.log('Datos enviados:', formData);
-    
-    // Simular redirección al éxito
-    navigate('/dashboard'); 
+    console.log('Iniciando sesión en IzuHome:', credentials);
+    // Simulación: Redirigir según rol (esto lo devolvería el backend)
+    // Si es admin -> /admin, si es usuario -> /perfil
+    navigate('/');
   };
 
   return (
-    <div className="auth-container">
-      <h2>Bienvenido de nuevo</h2>
+    <div className="auth-container" style={{ marginTop: '5rem' }}>
+      <h1 style={{ color: '#0f172a', fontSize: '1.8rem' }}>¡Hola de nuevo!</h1>
+      <p style={{ color: '#64748b', marginBottom: '2rem' }}>
+        Accede a tu cuenta IzuHome
+      </p>
+
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email</label>
+          <label>Correo Electrónico</label>
           <input 
             type="email" 
             name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
+            placeholder="tucorreo@ejemplo.com" 
             required 
+            onChange={handleChange} 
           />
         </div>
         <div>
@@ -41,16 +40,27 @@ function Login() {
           <input 
             type="password" 
             name="password" 
-            value={formData.password} 
-            onChange={handleChange} 
             required 
+            onChange={handleChange} 
           />
         </div>
-        <button type="submit">Ingresar</button>
+
+        <div style={{ textAlign: 'right', fontSize: '0.85rem' }}>
+          <Link to="/recuperar-password" style={{ color: '#64748b' }}>
+            ¿Olvidaste tu contraseña?
+          </Link>
+        </div>
+
+        <button type="submit" className="btn-primary">
+          Entrar
+        </button>
       </form>
-      <p>
-        ¿No tienes cuenta? <Link to="/registro">Regístrate aquí</Link>
-      </p>
+
+      <div style={{ marginTop: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
+        <p style={{ fontSize: '0.9rem' }}>
+          ¿Aún no eres parte? <Link to="/registro">Regístrate aquí</Link>
+        </p>
+      </div>
     </div>
   );
 }
