@@ -4,7 +4,7 @@ function Landing() {
   return (
     <div className="landing-container">
       <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
-        <h1>MiProyecto</h1>
+        <h1>IzuHome</h1>
         <div>
           <Link to="/login" style={{ marginRight: '10px' }}>Iniciar Sesión</Link>
           <Link to="/registro">Registrarse</Link>
