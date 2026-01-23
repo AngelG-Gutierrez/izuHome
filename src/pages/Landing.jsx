@@ -10,7 +10,7 @@ function Landing() {
         </div>
         <div>
           <Link to="/login" className="btn-ghost">Ingresar</Link>
-          <Link to="/registro">
+          <Link to="/propiedades/nueva">
             <button className="btn-primary">Publicar / Buscar</button>
           </Link>
         </div>
