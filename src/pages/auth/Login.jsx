@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// Importamos iconos de Material Design (md) y Bootstrap Icons (bi)
 import { MdEmail, MdLock } from 'react-icons/md';
 import { BiArrowBack } from 'react-icons/bi';
 
@@ -20,7 +19,7 @@ function Login() {
 
   return (
     <div className="split-screen">
-      {/* LADO IZQUIERDO: Branding (Visible en escritorio) */}
+      {/*Branding*/}
       <div className="split-brand">
         <div>
           <h1 style={{ fontSize: '2.5rem', fontWeight: '900' }}>IzuHome</h1>

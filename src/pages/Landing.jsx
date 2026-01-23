@@ -6,7 +6,6 @@ function Landing() {
       {/* Navbar simplificado */}
       <nav>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {/* Aquí iría el logo */}
           <h1 style={{ color: '#0f172a', fontSize: '1.5rem' }}>IzuHome</h1>
         </div>
         <div>

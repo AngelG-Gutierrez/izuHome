@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Paleta IzuHome Refinada */
+  /* Paleta IzuHome*/
   --primary: #0f172a;       /* Azul marino profundo */
   --primary-light: #1e293b;
   --accent: #10b981;        /* Verde esmeralda */
@@ -74,7 +74,7 @@ a:hover { color: var(--accent-dark); }
 }
 .btn-ghost:hover { background-color: rgba(0,0,0,0.05); }
 
-/* --- Componentes UI: Inputs Modernos --- */
+/* --- Componentes UI --- */
 .input-group {
   position: relative;
   margin-bottom: 1.2rem;
