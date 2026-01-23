@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+// Importamos iconos de Material Design (md) y Bootstrap Icons (bi)
+import { MdEmail, MdLock } from 'react-icons/md';
+import { BiArrowBack } from 'react-icons/bi';
 
 function Login() {
   const navigate = useNavigate();
@@ -11,55 +14,83 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Iniciando sesión en IzuHome:', credentials);
-    // Simulación: Redirigir según rol (esto lo devolvería el backend)
-    // Si es admin -> /admin, si es usuario -> /perfil
+    console.log('Login:', credentials);
     navigate('/');
   };
 
   return (
-    <div className="auth-container" style={{ marginTop: '5rem' }}>
-      <h1 style={{ color: '#0f172a', fontSize: '1.8rem' }}>¡Hola de nuevo!</h1>
-      <p style={{ color: '#64748b', marginBottom: '2rem' }}>
-        Accede a tu cuenta IzuHome
-      </p>
-
-      <form onSubmit={handleSubmit}>
+    <div className="split-screen">
+      {/* LADO IZQUIERDO: Branding (Visible en escritorio) */}
+      <div className="split-brand">
         <div>
-          <label>Correo Electrónico</label>
-          <input 
-            type="email" 
-            name="email" 
-            placeholder="tucorreo@ejemplo.com" 
-            required 
-            onChange={handleChange} 
-          />
+          <h1 style={{ fontSize: '2.5rem', fontWeight: '900' }}>IzuHome</h1>
+          <p style={{ fontSize: '1.2rem', opacity: 0.9, marginTop: '1rem' }}>
+            Conectando a la comunidad de Izúcar con su próximo hogar.
+          </p>
         </div>
-        <div>
-          <label>Contraseña</label>
-          <input 
-            type="password" 
-            name="password" 
-            required 
-            onChange={handleChange} 
-          />
+        <div style={{ fontSize: '0.9rem', opacity: 0.7 }}>
+          © 2026 IzuHome. Proyecto UTIM.
         </div>
+      </div>
 
-        <div style={{ textAlign: 'right', fontSize: '0.85rem' }}>
-          <Link to="/recuperar-password" style={{ color: '#64748b' }}>
-            ¿Olvidaste tu contraseña?
-          </Link>
+      {/* LADO DERECHO: Formulario */}
+      <div className="split-form">
+        {/* Botón de regreso solicitado */}
+        <Link to="/" className="back-link">
+          <BiArrowBack /> Volver al inicio
+        </Link>
+
+        <div className="auth-header">
+          <h2>¡Bienvenido de nuevo!</h2>
+          <p>Ingresa tus credenciales para continuar.</p>
         </div>
 
-        <button type="submit" className="btn-primary">
-          Entrar
-        </button>
-      </form>
+        <form onSubmit={handleSubmit}>
+          {/* Input con Icono */}
+          <div className="input-group">
+            <label>Correo Electrónico</label>
+            <div className="input-wrapper">
+              <MdEmail className="input-icon" />
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="ejemplo@utizucar.edu.mx" 
+                required 
+                onChange={handleChange} 
+              />
+            </div>
+          </div>
 
-      <div style={{ marginTop: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
-        <p style={{ fontSize: '0.9rem' }}>
-          ¿Aún no eres parte? <Link to="/registro">Regístrate aquí</Link>
-        </p>
+          <div className="input-group">
+            <label>Contraseña</label>
+            <div className="input-wrapper">
+              <MdLock className="input-icon" />
+              <input 
+                type="password" 
+                name="password" 
+                placeholder="••••••••"
+                required 
+                onChange={handleChange} 
+              />
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'right', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
+            <Link to="/recuperar-password" style={{ color: 'var(--text-muted)' }}>
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </div>
+
+          <button type="submit" className="btn-primary" style={{ padding: '1rem' }}>
+            Iniciar Sesión
+          </button>
+        </form>
+
+        <div style={{ textAlign: 'center', marginTop: '2rem', color: 'var(--text-muted)' }}>
+          <p>
+            ¿Aún no tienes cuenta? <Link to="/registro">Regístrate gratis</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

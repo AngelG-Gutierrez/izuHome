@@ -1,99 +1,109 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { MdPerson, MdEmail, MdLock, MdPhone, MdHomeWork } from 'react-icons/md';
+import { BiArrowBack } from 'react-icons/bi';
 
 function Register() {
   const navigate = useNavigate();
-  
   const [formData, setFormData] = useState({
-    nombre: '',
-    apellidos: '',
-    email: '',
-    telefono: '', // Requerido según RF-001
-    password: '',
-    confirmPassword: '',
-    tipo: 'inquilino' // Valor por defecto según Schema DB
+    nombre: '', apellidos: '', email: '', telefono: '', password: '', confirmPassword: '', tipo: 'inquilino'
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
-    // Aquí iría la conexión con tu API (Node.js)
-    // endpoint: POST /api/usuarios
-    console.log('Registrando usuario IzuHome:', formData);
+    if (formData.password !== formData.confirmPassword) return alert("Las contraseñas no coinciden");
+    console.log('Registro:', formData);
     navigate('/login');
   };
 
   return (
-    <div className="auth-container">
-      <h2 style={{ marginBottom: '0.5rem' }}>Únete a IzuHome</h2>
-      <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1.5rem' }}>
-        La comunidad inmobiliaria de Izúcar
-      </p>
-
-      <form onSubmit={handleSubmit}>
-        {/* Nombre y Apellidos */}
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <div style={{ flex: 1 }}>
-            <label>Nombre</label>
-            <input type="text" name="nombre" required onChange={handleChange} />
-          </div>
-          <div style={{ flex: 1 }}>
-            <label>Apellidos</label>
-            <input type="text" name="apellidos" required onChange={handleChange} />
-          </div>
-        </div>
-
-        {/* Selección de Rol - CRÍTICO para el proyecto */}
+    <div className="split-screen">
+      {/* Branding Lateral */}
+      <div className="split-brand" style={{ backgroundPosition: 'center bottom' }}>
         <div>
-          <label>¿Cómo usarás la plataforma?</label>
-          <select 
-            name="tipo" 
-            value={formData.tipo} 
-            onChange={handleChange}
-            style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #cbd5e1' }}
-          >
-            <option value="inquilino">Busco un lugar para vivir (Inquilino)</option>
-            <option value="arrendador">Quiero rentar mi propiedad (Arrendador)</option>
-            <option value="ambos">Ambos</option>
-          </select>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: '900' }}>Únete a IzuHome</h1>
+          <p style={{ fontSize: '1.2rem', opacity: 0.9, marginTop: '1rem' }}>
+            Crea tu cuenta y encuentra (o publica) el espacio ideal en Izúcar.
+          </p>
+        </div>
+      </div>
+
+      {/* Formulario */}
+      <div className="split-form">
+        <Link to="/" className="back-link"><BiArrowBack /> Volver al inicio</Link>
+
+        <div className="auth-header">
+          <h2>Crear Cuenta</h2>
+          <p>Completa el formulario para comenzar.</p>
         </div>
 
-        {/* Contacto */}
-        <div>
-          <label>Correo Electrónico</label>
-          <input type="email" name="email" placeholder="ejemplo@utizucar.edu.mx" required onChange={handleChange} />
-        </div>
+        <form onSubmit={handleSubmit}>
+          {/* Grid para Nombre y Apellido */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="input-group">
+              <label>Nombre</label>
+              <div className="input-wrapper">
+                <MdPerson className="input-icon" />
+                <input type="text" name="nombre" required onChange={handleChange} placeholder="Juan" />
+              </div>
+            </div>
+            <div className="input-group">
+              <label>Apellidos</label>
+              <div className="input-wrapper">
+                <MdPerson className="input-icon" />
+                <input type="text" name="apellidos" required onChange={handleChange} placeholder="Pérez" />
+              </div>
+            </div>
+          </div>
+
+           {/* Selector de Rol */}
+           <div className="input-group">
+            <label>Quiero...</label>
+            <div className="input-wrapper">
+              <MdHomeWork className="input-icon" />
+              <select name="tipo" value={formData.tipo} onChange={handleChange}>
+                <option value="inquilino">Buscar alojamiento (Estudiante/Familia)</option>
+                <option value="arrendador">Rentar mi propiedad</option>
+                <option value="ambos">Ambos</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="input-group">
+            <label>Correo Electrónico</label>
+            <div className="input-wrapper">
+              <MdEmail className="input-icon" />
+              <input type="email" name="email" required onChange={handleChange} placeholder="ejemplo@utizucar.edu.mx" />
+            </div>
+          </div>
+          
+          <div className="input-group">
+            <label>Teléfono / WhatsApp</label>
+            <div className="input-wrapper">
+              <MdPhone className="input-icon" />
+              <input type="tel" name="telefono" required onChange={handleChange} placeholder="243 000 0000" />
+            </div>
+          </div>
+
+          <div className="input-group">
+            <label>Contraseña</label>
+            <div className="input-wrapper">
+              <MdLock className="input-icon" />
+              <input type="password" name="password" required onChange={handleChange} placeholder="••••••••"/>
+            </div>
+          </div>
+
+          <button type="submit" className="btn-primary" style={{ padding: '1rem', marginTop: '1rem' }}>
+            Registrarme
+          </button>
+        </form>
         
-        <div>
-          <label>Teléfono (WhatsApp)</label>
-          <input type="tel" name="telefono" placeholder="243 000 0000" required onChange={handleChange} />
+        <div style={{ textAlign: 'center', marginTop: '2rem', color: 'var(--text-muted)' }}>
+          <p>¿Ya tienes cuenta? <Link to="/login">Inicia Sesión</Link></p>
         </div>
-
-        {/* Seguridad */}
-        <div>
-          <label>Contraseña</label>
-          <input type="password" name="password" required onChange={handleChange} />
-        </div>
-        <div>
-          <label>Confirmar Contraseña</label>
-          <input type="password" name="confirmPassword" required onChange={handleChange} />
-        </div>
-
-        <button type="submit" className="btn-primary" style={{ marginTop: '1rem' }}>
-          Crear Cuenta
-        </button>
-      </form>
-
-      <p style={{ marginTop: '1.5rem', fontSize: '0.9rem' }}>
-        ¿Ya tienes cuenta? <Link to="/login" style={{ fontWeight: 'bold' }}>Inicia Sesión</Link>
-      </p>
+      </div>
     </div>
   );
 }
