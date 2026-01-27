@@ -3,18 +3,22 @@ import Landing from './pages/Landing';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 
+import { Dashboard } from './pages/Dashboard';
+import { MisPropiedades } from './pages/Propiedades';
+import { Chat } from './pages/Mensajes';
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Ruta Pública Principal */}
         <Route path="/" element={<Landing />} />
         
-        {/* Rutas de Autenticación */}
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Register />} />
         
-        {/* Aquí irían las rutas privadas más adelante, ej: /dashboard */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/propiedades" element={<MisPropiedades />} />
+        <Route path="/mensajes" element={<Chat />} />
       </Routes>
     </BrowserRouter>
   );

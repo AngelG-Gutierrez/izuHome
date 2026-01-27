@@ -7,6 +7,15 @@ function Landing() {
       <nav>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <h1 style={{ color: '#0f172a', fontSize: '1.5rem' }}>IzuHome</h1>
+          
+          {/* --- INICIO DE TUS VISTAS AGREGADAS --- */}
+          <div style={{ display: 'flex', gap: '15px', marginLeft: '20px' }}>
+            <Link to="/mensajes" style={{ textDecoration: 'none', color: '#64748b', fontSize: '0.8rem' }}>Mensajes</Link>
+            <Link to="/dashboard" style={{ textDecoration: 'none', color: '#64748b', fontSize: '0.8rem' }}>Dashboard</Link>
+            <Link to="/propiedades" style={{ textDecoration: 'none', color: '#64748b', fontSize: '0.8rem' }}>Mis Propiedades</Link>
+          </div>
+          {/* --- FIN DE TUS VISTAS AGREGADAS --- */}
+
         </div>
         <div>
           <Link to="/login" className="btn-ghost">Ingresar</Link>
