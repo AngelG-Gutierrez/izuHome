@@ -28,12 +28,10 @@ function App() {
         <Route path="/buscar" element={<SearchResults />} />
         <Route path="/propiedad/:id" element={<PropertyDetail />} />
         
-<<<<<<< HEAD
+        {/* Aquí irían las rutas privadas más adelante, ej: /dashboard */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/propiedades" element={<MisPropiedades />} />
         <Route path="/mensajes" element={<Chat />} />
-=======
-        {/* Aquí irían las rutas privadas más adelante, ej: /dashboard */}
 
         {/* Ruta para agregar propiedades */}
         <Route path="/propiedades/nueva" element={<PropertyFormPage />} />
@@ -44,7 +42,6 @@ function App() {
         {/* Ruta para ver las solicitudes de contacto */}
 
         <Route path="/mis-solicitudes" element={<ContactRequests />} />
->>>>>>> 3e021df66981d8c9ccb9b6efbdfac15199b65f4e
       </Routes>
     </BrowserRouter>
   );
