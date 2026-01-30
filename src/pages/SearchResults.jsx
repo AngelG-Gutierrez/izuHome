@@ -1,4 +1,4 @@
-// src/pages/SearchResults.jsx - VERSIÓN CORREGIDA
+
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
@@ -7,12 +7,12 @@ import { FaFilter, FaList, FaMapMarkerAlt, FaSortAmountDown, FaSearch, FaTimes, 
 import { MdMap, MdApartment, MdHouse, MdMeetingRoom } from 'react-icons/md';
 import '../styles/SearchResults.css';
 
-// CORREGIDO: Rutas de imágenes desde assets/ (no desde subcarpetas)
+
 import casa1 from '../assets/casa1.jpg';
 import casa2 from '../assets/casa2.jpeg';
 import casa3 from '../assets/casa3.webp';
 import depto1 from '../assets/departamento1.webp';
-import depto2 from '../assets/departamento2.webp'; // CORREGIDO: nombre
+import depto2 from '../assets/departamento2.webp'; 
 import depto3 from '../assets/departamento3.webp';
 import cuarto1 from '../assets/cuarto1.webp';
 import cuarto2 from '../assets/cuarto2.jpg';
