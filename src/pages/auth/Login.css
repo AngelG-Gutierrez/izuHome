@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Paleta IzuHome */
+  --primary: #0f172a;       /* Azul marino profundo */
+  --primary-light: #1e293b;
+  --accent: #10b981;        /* Verde esmeralda */
+  --accent-dark: #059669;
+  
+  --bg-page: #f1f5f9;       /* Gris azulado claro */
+  --white: #ffffff;
+  
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  --danger: #ef4444;
+  
+  /* UI Helpers */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* --- Base --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* --- Layout: Auth (Split Screen) --- */
+.split-screen {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--white);
+}
+
+.split-brand {
+  flex: 1;
+  display: none; /* Se oculta en móvil por defecto */
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(16, 185, 129, 0.4)),
+              url('https://www.angulo7.com.mx/wp-content/uploads/2025/06/IzcardeMatamorostendrUniversidaddelaSaluddestinarn15mdpparaobra-ezgif.com-jpg-to-webp-converter.webp');
+  background-size: cover;
+  background-position: center;
+  padding: 4rem;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--white);
+}
+
+.split-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  max-width: 550px; /* Un poco más estrecho para que se vea elegante */
+  margin: 0 auto;
+}
+
+/* --- Componentes del Formulario --- */
+.auth-header {
+  margin-bottom: 2rem;
+}
+
+.auth-header h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -1px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+/* --- Formulario e Inputs --- */
+.split-form form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+.input-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  text-align: left;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 3rem; /* Espacio para el icono a la izquierda */
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: var(--white);
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+/* Estilo para los iconos de React Icons */
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  pointer-events: none; /* Evita que el icono interfiera con el click */
+  transition: color 0.3s;
+}
+
+.input-wrapper:focus-within .input-icon {
+  color: var(--accent);
+}
+
+/* --- Botón Principal --- */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: var(--white);
+  border: none;
+  padding: 1rem; /* Padding uniforme */
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.1);
+}
+
+/* --- Links de ayuda --- */
+.split-form a {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.split-form a:hover {
+  color: var(--accent-dark);
+}
+
+/* --- Responsive --- */
+@media (min-width: 768px) {
+  .split-brand {
+    display: flex;
+  }
+  .split-form {
+    padding: 4rem;
+  }
+}
