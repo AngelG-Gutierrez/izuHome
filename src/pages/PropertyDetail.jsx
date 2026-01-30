@@ -1,4 +1,3 @@
-// src/pages/PropertyDetail.jsx - VERSIÓN CORREGIDA COMPLETA
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { FaBed, FaBath, FaRulerCombined, FaStar, FaCheck, FaMapMarkerAlt, FaPhone, FaEnvelope, FaCalendarAlt } from 'react-icons/fa';
@@ -6,7 +5,7 @@ import { MdArrowBack, MdApartment, MdHouse, MdMeetingRoom, MdShare, MdFavoriteBo
 import { GiHomeGarage } from 'react-icons/gi';
 import '../styles/PropertyDetail.css';
 
-// CORREGIDO: Importar imágenes correctamente desde assets
+
 import casa1 from '../assets/casa1.jpg';
 import casa2 from '../assets/casa2.jpeg';
 import casa3 from '../assets/casa3.webp';
