@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdEmail, MdLock } from 'react-icons/md';
 import { BiArrowBack } from 'react-icons/bi';
+import './Login.css'
 
 function Login() {
   const navigate = useNavigate();

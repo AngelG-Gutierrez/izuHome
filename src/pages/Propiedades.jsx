@@ -10,7 +10,7 @@ export const MisPropiedades = () => {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h2 style={{ color: '#0f172a', margin: 0 }}>Mis Propiedades</h2>
-        <button className="btn-primary" style={{ padding: '10px 20px', borderRadius: '8px' }}>+ Publicar</button>
+        <Link to="/propiedades/nueva"><button className="btn-primary" style={{ padding: '10px 20px', borderRadius: '8px' }}>+ Publicar</button></Link>
       </div>
       
       <div className="feature-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
