@@ -3,7 +3,7 @@
   --detail-primary: #5C3E94;
   --detail-secondary: #E9B3FB;
   --detail-accent: #BBE0EF;
-  --detail-bg: #FCF6D9;
+  --detail-bg: #fdfdfd;
   --detail-light: #FFFFFF;
   --detail-text: #1a202c;
   --detail-text-light: #718096;
@@ -220,7 +220,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #FEF3C7;
+  background: #ffffff;
   padding: 8px 16px;
   border-radius: 20px;
 }

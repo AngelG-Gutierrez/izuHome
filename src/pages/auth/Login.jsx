@@ -75,7 +75,7 @@ function Login() {
           </div>
 
           <div style={{ textAlign: 'right', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
-            <Link to="/recuperar-password" style={{ color: 'var(--text-muted)' }}>
+            <Link to="/recuperar-contrasena" style={{ color: 'var(--text-muted)' }}>
               ¿Olvidaste tu contraseña?
             </Link>
           </div>

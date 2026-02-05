@@ -202,7 +202,7 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  background: #FEF3C7;
+  background: #faf9f5;
   padding: 4px 8px;
   border-radius: 10px;
   flex-shrink: 0;
@@ -549,7 +549,7 @@ a:focus-visible {
 
 /* FALLBACK PARA IMÁGENES QUE NO CARGAN */
 .property-image {
-  background: linear-gradient(135deg, #FCF6D9 0%, #E9B3FB 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #E9B3FB 100%);
 }
 
 /* COMPATIBILIDAD CON VARIOS NAVEGADORES */
